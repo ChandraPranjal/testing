@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios"
+import { UserContextProvider } from "./context/UserContext";
 
+import Routes from "./routes/Routes";
 function App() {
+  //Server address
+  axios.defaults.baseURL = "http://localhost:4040"
+  //so that we can set cookies from server
+  axios.defaults.withCredentials = true;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContextProvider>
+      <Routes />
+    </UserContextProvider>
   );
 }
 
